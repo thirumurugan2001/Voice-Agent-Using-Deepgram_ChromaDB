@@ -7,6 +7,7 @@ from utils.rag import similaritySearch
 # Controller function for voice agent
 def voiceAgentController(base64,extension):
     try:
+        print(f"Start Converting base64 to audio file")
         # Check if base64 is empty 
         if base64 == "":
             return {
@@ -14,7 +15,6 @@ def voiceAgentController(base64,extension):
                 "statusCode":400,
                 "Status":False
             }
-
         # Convert base64 to audio file
         fileurl= base64ToAudio(base64,extension)
         if fileurl is None:
@@ -23,7 +23,8 @@ def voiceAgentController(base64,extension):
                 "statusCode":400,
                 "Status":False
             }
-        
+
+        print(f"Start Transcribing audio to text")
         # Transcribe audio to text
         result = SpeechToText(fileurl)
         if result is None:
@@ -33,6 +34,7 @@ def voiceAgentController(base64,extension):
                 "Status":False
             }
 
+        print(f"starting similarity search for knowledge base data")
         # Perform similarity search to get knowledge base data
         knowledgeBaseData = similaritySearch(result)
         if knowledgeBaseData is None:
@@ -42,6 +44,7 @@ def voiceAgentController(base64,extension):
                 "Status":False
             }
 
+        print(f"Starting to connect to chatbot and get response")
         # Connect to chatbot and get response
         chatbotResponse = ConnectChatBot(result,knowledgeBaseData)
         if chatbotResponse is None:
@@ -51,6 +54,7 @@ def voiceAgentController(base64,extension):
                 "Status":False
             }
 
+        print(f"Starting to convert chatbot response to speech")    
         # Convert chatbot response to speech
         text_to_speech_response = textToVoice(chatbotResponse)
         if text_to_speech_response is None:
@@ -60,6 +64,7 @@ def voiceAgentController(base64,extension):
                 "Status":False
             }
 
+        print(f"Successfully converted text to speech and returning the response")
         # Return the final response with audio data
         return {
                 "message":"Successfully converted text to speech !",
