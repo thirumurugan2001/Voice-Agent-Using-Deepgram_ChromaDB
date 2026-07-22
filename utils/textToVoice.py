@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+# Function to convert text to voice using Deepgram API
 def textToVoice(text: str) -> bytes:
     try:
         deepgram = DeepgramClient(api_key=os.getenv("DEEPGRAM_API_KEY"))
@@ -13,5 +14,5 @@ def textToVoice(text: str) -> bytes:
         audio_bytes = b"".join(audio_stream)
         return audio_bytes
     except Exception as e:
-        print(f"Exception: {e}")
-        raise
+        print(f"Error in textToVoice function - textToVoice.py file: {str(e)}")
+        return None

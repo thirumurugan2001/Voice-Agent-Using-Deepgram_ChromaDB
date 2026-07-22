@@ -16,5 +16,5 @@ def dbconnection():
         print("Connected to SingleStore")
         return conn
     except Exception as e:
-        print("Error in connecting to SingleStore: ", str(e))
+        print(f"Error in connecting to SingleStore - database.py file: {str(e)}")
         return None

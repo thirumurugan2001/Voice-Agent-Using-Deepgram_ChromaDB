@@ -15,5 +15,5 @@ def get_embedding(text):
             ).embeddings[0] 
         return embedding
     except Exception as e:
-        print("Error in getting embedding: ", str(e))
+        print(f"Error in getting embedding - getEmbedding.py file: {str(e)}")
         return None

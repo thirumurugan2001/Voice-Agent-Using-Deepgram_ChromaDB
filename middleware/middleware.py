@@ -1,6 +1,7 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 
+# Function to setup CORS middleware for FastAPI application
 def setup_cors(app: FastAPI):
     origins = [
         "http://localhost:5173", 
@@ -8,7 +9,6 @@ def setup_cors(app: FastAPI):
         "http://127.0.0.1:5173",  
         "http://localhost:3000",    
         "http://127.0.0.1:3000",    
-        "https://voice-agent-frontend-nu.vercel.app"
     ]    
     app.add_middleware(
         CORSMiddleware,

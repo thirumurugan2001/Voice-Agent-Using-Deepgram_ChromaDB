@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 load_dotenv()
 
-
+# Initialize the ChatOpenAI model and ConversationSummaryMemory
 llm = ChatOpenAI(
     model=os.getenv("MODEL"),
     temperature=0,
@@ -13,6 +13,7 @@ llm = ChatOpenAI(
     openai_api_base=os.getenv("API_BASE_URL"))
 memory = ConversationSummaryMemory(llm=llm)
 
+# Function to connect to the chatbot and get response based on the question and knowledge base data
 def ConnectChatBot(Question, knowledgeBaseData):
     try:        
         chat_history = memory.load_memory_variables({})
@@ -110,4 +111,5 @@ def ConnectChatBot(Question, knowledgeBaseData):
             )
         return output        
     except Exception as e:
-        return f"Error: {str(e)}"
+        print(f"Error in ConnectChatBot function - ConnectChatBot.py file: {str(e)}")
+        return None
