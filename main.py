@@ -1,11 +1,11 @@
+import io
 from fastapi import FastAPI
 from middleware.middleware import setup_cors
 from middleware.controller import voiceAgentController
-app = FastAPI()
-setup_cors(app)
 from schema.voiceAgent import voiceAgent
 from fastapi.responses import StreamingResponse
-import io
+app = FastAPI()
+setup_cors(app)
 
 # API endpoint for voice agent
 @app.post("/chatbot/voice/")
