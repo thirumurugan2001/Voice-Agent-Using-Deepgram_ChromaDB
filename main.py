@@ -3,7 +3,7 @@ from middleware.middleware import setup_cors
 from middleware.controller import voiceAgentController
 app = FastAPI()
 setup_cors(app)
-from middleware.model import voiceAgent
+from schema.voiceAgent import voiceAgent
 from fastapi.responses import StreamingResponse
 import io
 

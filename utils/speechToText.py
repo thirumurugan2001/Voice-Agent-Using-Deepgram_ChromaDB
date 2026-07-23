@@ -7,7 +7,6 @@ load_dotenv()
 # Function to convert speech to text using Deepgram API
 def SpeechToText(file_path):
     try:
-        client = DeepgramClient(api_key=os.getenv("DEEPGRAM_API_KEY"))
         with open(file_path, "rb") as audio:
             audio_data = audio.read()
         response = client.listen.v1.media.transcribe_file(

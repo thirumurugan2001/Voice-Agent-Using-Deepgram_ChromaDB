@@ -1,7 +1,7 @@
 from xmlrpc import client
-from rag_utils.embedding import get_embedding
-from rag_utils.ConnectChatBot import ConnectChatBot
-from rag_utils.dbConnection import Dbconnection
+from utils.getEmbedding import get_embedding
+from utils.ConnectChatBot import ConnectChatBot
+from ragPipeline.dbConnection import Dbconnection
 from Config.loadConfig import load_config
 config = load_config()
 
