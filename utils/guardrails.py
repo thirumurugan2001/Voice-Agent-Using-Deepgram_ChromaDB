@@ -119,3 +119,11 @@ def output_guardrail(response):
         "allowed": True,
         "message": response
     }
+
+# Remove Markdown bold/italic markers
+def clean_text_for_speech(text: str) -> str:
+    text = text.replace("*", "")
+    text = re.sub(r"#+\s*", "", text)
+    text = text.replace("•", "")
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()

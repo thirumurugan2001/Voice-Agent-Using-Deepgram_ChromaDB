@@ -1,4 +1,3 @@
-from xmlrpc import client
 from utils.getEmbedding import get_embedding
 from utils.ConnectChatBot import ConnectChatBot
 from ragPipeline.dbConnection import Dbconnection
