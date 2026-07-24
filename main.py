@@ -1,9 +1,7 @@
-import io
 from fastapi import FastAPI
 from middleware.middleware import setup_cors
 from middleware.controller import voiceAgentController
 from schema.voiceAgent import voiceAgent
-from fastapi.responses import StreamingResponse
 app = FastAPI()
 setup_cors(app)
 
@@ -16,12 +14,16 @@ async def rag(item: voiceAgent):
             return {
                 "message":response.get("message"),
                 "statusCode":response.get("statusCode"),
-                "Status":False
+                "Status":False,
             }
-        return StreamingResponse(
-            io.BytesIO(response.get("data")),
-            media_type="audio/mpeg"
-        )
+        return {
+            "message":response.get("message"),
+            "statusCode":response.get("statusCode"),
+            "Status":True,
+            "data":[{
+                "file_path":response.get("file_Path")
+            }]
+        }
     except Exception as e:
         print(f"Error in rag function - main.py file: {str(e)}")
         return {

@@ -58,8 +58,8 @@ def voiceAgentController(base64,extension):
 
         print(f"Starting to convert chatbot response to speech.....")    
         # Convert chatbot response to speech
-        text_to_speech_response = textToVoice(chatbotResponse)
-        if text_to_speech_response is None:
+        file_path = textToVoice(chatbotResponse)
+        if file_path is None:
             return {
                 "message":"Failed to convert text to speech !",
                 "statusCode":400,
@@ -69,10 +69,10 @@ def voiceAgentController(base64,extension):
         print(f"Successfully converted text to speech and returning the response......")
         # Return the final response with audio data
         return {
-                "message":"Successfully converted text to speech !",
+                "message":"Successfully generated the response and stored it in the Audio folder. Use the generated audio file path in the response.",
                 "statusCode":200,
                 "Status":True,
-                "data":text_to_speech_response
+                "file_Path":file_path
             }
 
     except Exception as e:
